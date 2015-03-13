@@ -1,0 +1,73 @@
+\chapter{Using the Ricethesis PDF class}
+
+\initial{T}he class is designed to be easy to use, assuming a basic TeX installation and simple file hierarchy.  I set it up so that a folder called something like ``PhD'' has two subfolders in it: \verb+/PhD/Classes+ and \verb+/PhD/DocGraphics+, as in the zip file this all came in.  The classes folder holds this and other classes you might need, the graphics folder holds (obviously) pictures for the document.  Provided you have a good installation of \LaTeX, this example project should compile immediately as discussed in Chapter \ref{chap:compiling}.  I've tried to ensure that when writing your thesis, there should be no need to modify the class file itself--though you should feel free to do so as necessary!
+
+\section{Configuring the Document}
+
+You'll need to add your name, the title of your thesis, and your committee members in the appropriate places in the \verb+thesis.tex+ file.  It should be clear what needs to change.
+
+\begin{enumerate}
+	\item Add special packages you might require
+	\item Specify name of bibliography: References, Citations, etc.
+	\item Add your name, thesis title, degree, and date
+	\item Define committee members and affiliations (up to five).  Spacing for the title page will be automatically determined for best formatting.
+\end{enumerate}
+
+This will configure everything for the title page.  Now it's time to add content!
+
+\subsection{Adding Text}
+
+You'll need to add text for the abstract, acknowledgements, and body.  To break up the file, I strongly suggest using the \verb+\include{}+ command as demonstrated in this example.  You might make a file called \verb+preface.tex+ which includes both abstract and acknowledgements (and a dedication if required).  After this, the contents pages are automatically generated at one-and-a-half spacing.
+
+After the line spacing has been reset to double, enter body text where indicated.  You can create a series of files called something like \verb+intro.tex+, \verb+prior.tex+, etc. for each of your chapters.  That way you can compile one chapter at a time (by commenting the others out) for rapid iteration.
+
+At the end of \verb+thesis.tex+ is the bibliography.  I use the IEEE Transactions style, but you can change this where indicated.  Be sure to include your .bib file, mine is always called \verb+references.bib+.  Below that is the metadata for the PDF document, where you need to add your title, name, and date of creation.
+
+\subsection{Adding Graphics}
+
+\begin{figure}
+	\center
+	\includegraphics [width=.3\textwidth] {./DocGraphics/sammy.jpg}
+	\caption[Go Owls]{Sammy is Rice's mascot.  Note that in the caption, there is much more text than in the ``List of Figures'' page.  This is because we can specify a contents line in the caption environment, see source file for the example.}
+	\label{fig:ricelogo}
+\end{figure}
+
+To keep file hierarchies clean, I add graphics from the \verb+DocGraphics+ path.  Figure \ref{fig:ricelogo} shows a picture completely labeled as a figure, with a caption and a label for referencing.  The caption ensure that it appears in the ``List of Figures'' page.
+
+\section{Adding References}
+
+I have included a reference to a paper of great importance \cite{Zelst:GreatMeaning}, which will cause a references section to be generated.  Note that a hyperlink back to this page will appear next to the reference.
+
+\chapter{Compiling the Thesis}
+\label{chap:compiling}
+
+Compiling the thesis \textbf{requires} \verb+pdflatex+.  Attempting to use \verb+latex+ will likely \textbf{fail} without non-trivial modification to the class file.  In the Windows environment, an installation of MikTex will likely default to pdflatex.  Mac installations of MacTex should also default to pdflatex, but check to make sure.  Regardless of platform, the top level file must be \verb+thesis.tex+ (or whatever you choose to name that file).
+
+In *ix, you can execute \verb+pdflatex+ from the command line.  One execution will update the document, several more are required to sync the contents and references.  To compile the bibliography and update links, follow this sequence:
+
+\singlespacing
+\begin{verbatim}
+	$ pdflatex thesis.tex
+	$ bibtex thesis
+	$ pdflatex thesis.tex
+	$ pdflatex thesis.tex
+	$ acroread thesis.pdf 
+\end{verbatim}
+\doublespacing
+
+In Table \ref{tab:compatibility}, we indicate the compatibility of this class file with a variety of common platforms.
+
+\begin{table}[ht]
+	\centering
+	\begin{tabular}{|c||c|}
+		\hline Platform & Ricethesis PDF Compatibility\\
+		\hline \hline Windows / MikTex & Y \\
+		\hline Mac / MacTex & Y\\
+		\hline Linux / TexLIVE & Y \\
+		\hline Speak 'n Spell & N \\
+		\hline
+	\end{tabular}
+	\caption[Compatibility Chart]{Compatibility of this class with pdflatex compilers on common platforms.}
+	\label{tab:compatibility}
+\end{table}
+

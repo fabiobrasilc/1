@@ -1,0 +1,111 @@
+\RequirePackage[l2tabu]{nag}	% for memoir
+\documentclass[oneside,12pt]{classes/Ricethesis_PDF}
+\usepackage{amsmath}
+\usepackage{amsthm}
+
+%% Document properties:
+
+% Specify the name of the bibliography.  I like "References"
+\def\bibsecname{References}
+
+%% Author properties: specify who you are, title of thesis, degree and date
+\author{Jane Doe}
+\title{A pdf\LaTeX ~Template for Rice Theses}
+\degree{Doctor of Philosophy}
+\degreedate{Aug 2015}
+
+% Define the thesis committee, and their positions
+% The comchair appears first, the others appear in order
+\comchair{Dr.\  Joseph Fourier}
+\comchairaffil{Professor, \'{E}cole Polytechnique, France} 
+\comtwo{Dr.\ Pierre-Simon Laplace}
+\comtwoaffil{Marquis, Kingdom of France}
+\comthree{Dr.\ Henri Lebesgue}
+\comthreeaffil{Professor of Mathematical Analysis, Sorbonne}
+
+% Uncomment ONLY if there is a fourth committee member.
+\comfour{Prof. \'{E}mile Borel}
+\comfouraffil{Professor of Mathematics, University of Paris}
+
+% Uncomment for fifth committee member if required
+%\comfive{Dr. Sim\'{e}on Poisson}
+%\comfiveaffil{Professor of Analysis, \'{E}cole Polytechnique}
+
+%% Build the Thesis
+\makeindex
+\begin{document}
+
+% The first few pages are labeled in Roman numerals
+\begin{romanpages}
+
+% Build the tile page
+{\chapterstyle{daleifmodif}
+\maketitle
+
+
+% Include Abstract, Acknowledgement, and dedication if required.  It's in another file called "preface.tex"
+\DoubleSpacing
+%\doublespacing
+%\include{preface}
+
+\chapter*{Abstract}
+\chapter*{Acknowledgements}
+\chapter*{} % Dedication
+
+% Set the number of sectioning levels that get numbered and appear in the contents
+\setcounter{secnumdepth}{3}
+\setcounter{tocdepth}{1}
+ 
+% I prefer half spacing for lists like this.
+%\onehalfspacing
+\OnehalfSpacing 
+\tableofcontents
+\clearpage
+\listoffigures
+\clearpage
+\listoftables
+\clearpage
+}
+% End roman numerals, begin numbering in Arabic starting with the text
+\end{romanpages}
+ 
+\DoubleSpacing
+%\doublespacing
+
+%%%% INCLUDE TEX FILES IN ORDER  \/ \/ \/ \/
+{\chapterstyle{daleifmodif}
+\include{ex_chapter}
+%\include{intro}
+%\include{prior}
+
+%%%% END INCLUDED TEX FILES      /\ /\ /\ /\
+
+
+% Produce the bibliography, and add a contents line for it.  I prefer the IEEE
+% style, you can use your own since Rice doesn't care.  The ``cleardoublepage''
+% is required to guarantee that the bibliography gets the right page number in
+% the contents
+
+%\begin{singlespace}
+\SingleSpacing
+\cleardoublepage
+\addcontentsline{toc}{chapter}{\bibsecname}
+\renewcommand{\bibname}{\bibsecname}
+\bibliographystyle{IEEEtran}
+\bibliography{jabbrv,references}
+%\end{singlespace}
+}
+
+%Write the document metadata: Your name, the title, etc
+\pdfinfo{	/Title  (Title of this Thesis)
+			/Creator (TeX)
+			/Producer (pdfTeX)
+			/Author (The Author)
+			/CreationDate (D:20070228000000)  %format D:YYYYMMDDhhmmss
+			/ModDate (D:20110306225013)
+			/Subject (Thesis)
+			/Keywords (Rice University, Thesis)}
+
+
+% We're done!
+\end{document}
