@@ -6,10 +6,12 @@
 
 % Use the "book" style to get good page headings and numbering.  Letter paper is required for Rice theses.
 %\DeclareOption*{\PassOptionsToClass{\CurrentOption}{book}}
-\DeclareOption*{\PassOptionsToClass{\CurrentOption}{memoir}}
+%\DeclareOption*{\PassOptionsToClass{\CurrentOption}{memoir}}
+\DeclareOption*{\PassOptionsToClass{\CurrentOption}{tufte-book}}
+
 \ProcessOptions\relax
 %\LoadClass[pdftex, letterpaper]{book}
-%\LoadClass[justified]{tufte-book}
+%\LoadClass[justified,twoside]{tufte-book}
 \LoadClass[pdftex,letterpaper,12pt,leqno,openbib]{memoir} %\documentclass[a4paper,12pt,leqno,openbib]{memoir}
 
 % A bunch of useful packages are included.  You can choose either eucal or amsmath.  I update this to use graphicx
