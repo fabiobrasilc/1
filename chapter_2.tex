@@ -1,1 +1,35 @@
-\chapter{Extensions and Future Work}
+\chapter{Compiling the Thesis}
+\label{chap:compiling}
+
+\initial{C}ompiling the thesis \textbf{requires} \verb+pdflatex+.  Attempting to use \verb+latex+ will likely \textbf{fail} without non-trivial modification to the class file.  In the Windows environment, an installation of MikTex will likely default to pdflatex.  Mac installations of MacTex should also default to pdflatex, but check to make sure.  Regardless of platform, the top level file must be \verb+thesis.tex+ (or whatever you choose to name that file).
+
+In *ix, you can execute \verb+pdflatex+ from the command line.  One execution will update the document, several more are required to sync the contents and references.  To compile the bibliography and update links, follow this sequence:
+
+\singlespacing
+\begin{verbatim}
+	$ pdflatex thesis.tex
+	$ bibtex thesis
+	$ pdflatex thesis.tex
+	$ pdflatex thesis.tex
+	$ acroread thesis.pdf
+\end{verbatim}
+\doublespacing
+
+In Table \ref{tab:compatibility}, we indicate the compatibility of this class file with a variety of common platforms.
+
+\begin{table}[ht]
+	\centering
+	\begin{tabular}{|c||c|}
+		\hline Platform & Ricethesis PDF Compatibility\\
+		\hline \hline Windows / MikTex & Y \\
+		\hline Mac / MacTex & Y\\
+		\hline Linux / TexLIVE & Y \\
+		\hline Speak 'n Spell & N \\
+		\hline
+	\end{tabular}
+	\caption[Compatibility Chart]{Compatibility of this class with pdflatex compilers on common platforms.}
+	\label{tab:compatibility}
+\end{table}
+
+% Chapterbib
+% \bibliography{references}
