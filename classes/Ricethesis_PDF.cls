@@ -3,29 +3,32 @@
 % Author: Gareth B Middleton (gbmidd@gmail.com)
 % Generates a thesis formatted according to the guidelines set forth by the graduate committe of Rice University
 % Works only with pdflatex or pdfetex
+%
+% March, 2015
+% Modified by Manjari Narayan
 
 % Use the "book" style to get good page headings and numbering.  Letter paper is required for Rice theses.
 %\DeclareOption*{\PassOptionsToClass{\CurrentOption}{book}}
-%\DeclareOption*{\PassOptionsToClass{\CurrentOption}{memoir}}
-\DeclareOption*{\PassOptionsToClass{\CurrentOption}{tufte-book}}
+\DeclareOption*{\PassOptionsToClass{\CurrentOption}{memoir}}
+%\DeclareOption*{\PassOptionsToClass{\CurrentOption}{tufte-book}}
 
 \ProcessOptions\relax
 %\LoadClass[pdftex, letterpaper]{book}
 %\LoadClass[justified,twoside]{tufte-book}
-\LoadClass[pdftex,letterpaper,12pt,leqno,openbib]{memoir} %\documentclass[a4paper,12pt,leqno,openbib]{memoir}
+\LoadClass[letterpaper,12pt,leqno,openbib]{memoir} %\documentclass[a4paper,12pt,leqno,openbib]{memoir}
 
 % A bunch of useful packages are included.  You can choose either eucal or amsmath.  I update this to use graphicx
 % instead of graphics.  I commented out natbib usepackages to use the IEEE bibstyle
 
-\usepackage{fancyhdr}
 \usepackage[english]{babel}
 \usepackage[usenames, dvipsnames]{color}
-\usepackage[perpage]{footmisc} %%% doesn't seem to be working - Manjari N.
+%\usepackage[perpage]{footmisc} %%% doesn't seem to be working - Manjari N.
 \usepackage{setspace}
 \usepackage{graphicx}
 % Created a linked document: all references and labels tie together in the pdf, but in black (you can change this)
-\usepackage[pdftex, 
-			pdfpagelayout = useoutlines,
+\usepackage[pdftex,
+			pdfpagelayout = TwoPageRight,
+			pdfpagemode = UseOutlines,
 			bookmarks,
 			bookmarksopen = true,
 			bookmarksnumbered = true,
@@ -41,14 +44,18 @@
 			hyperfigures]{hyperref}
 
 
-% Margins and Borders
+% Bibliography options
+\usepackage[authoryear,sort&compress,longnamesfirst]{natbib}
+\usepackage{chapterbib} % Compatible with natbib. Turn on sectionbib option.
+\bibliographystyle{apalike}
 
+% Margins and Borders
 % Configure margins according to the Rice guidelines:
 % Left: 1.5 in
 % Top, right, bottom: 1 in
 \setlength{\hoffset}{-0.25in}
 \setlength{\oddsidemargin}{.75in}
-\setlength{\marginparwidth}{.75in}	
+\setlength{\marginparwidth}{.75in}
 \setlength{\marginparsep}{0in}
 \setlength{\textwidth}{6in}
 
@@ -59,19 +66,20 @@
 \setlength{\textheight}{8.75in}
 \setlength{\footskip}{0in}
 
-
-% Define the page header style (the line across the top)
-\pagestyle{fancy}
-\fancyhf{}
-\fancyhead[RO]{\bfseries\rightmark}
-\fancyhead[LE]{\bfseries\leftmark}
-\fancyhead[R]{\thepage}
-\renewcommand{\headrulewidth}{0.5pt}
-\renewcommand{\footrulewidth}{0pt}
-\fancypagestyle{plain}{
-  \fancyhead{}
-  \renewcommand{\headrulewidth}{0pt}
-}
+% % Commented out fancyhdr due to known conflicts with memoir
+% % Define the page header style (the line across the top)
+% \usepackage{fancyhdr}
+% \pagestyle{fancy}
+% \fancyhf{}
+% \fancyhead[RO]{\bfseries\rightmark}
+% \fancyhead[LE]{\bfseries\leftmark}
+% \fancyhead[R]{\thepage}
+% \renewcommand{\headrulewidth}{0.5pt}
+% \renewcommand{\footrulewidth}{0pt}
+% \fancypagestyle{plain}{
+%   \fancyhead{}
+%   \renewcommand{\headrulewidth}{0pt}
+% }
 
 % If using memoir
 \newcommand{\onehalfspacing}{\OneHalfSpacing}
@@ -83,28 +91,28 @@
 % Chapter Style
 % Font with math support: New Century Schoolbook
 %\usepackage{fouriernc}
-\usepackage[T1]{fontenc}
-\usepackage{helvet}
-\usepackage[english]{babel} % choose the language
-
-
-% Font with mathpazo support: 
-\usepackage[sc]{mathpazo} % use mathpazo for math fonts
 \usepackage{tgpagella} % but use tgpagella as main font
- %\usepackage[scaled=0.75]{luximono}
+\usepackage[T1]{fontenc}
 % Included slanted font for tgpagella
 \DeclareFontShape{T1}{qpl}{m}{sl} { <-> ssub * qpl/m/it }{}
 \DeclareFontShape{T1}{qpl}{b}{sl} { <-> ssub * qpl/b/it }{}
+\usepackage{helvet}
+\usepackage[english]{babel} % choose the language
 
-% Use titlesec, overrides memoir: 
-% 
+% Font with mathpazo support:
+\usepackage[sc]{mathpazo} % use mathpazo for math fonts
+ %\usepackage[scaled=0.75]{luximono}
+
+
+% Use titlesec, overrides memoir:
+%
 % \usepackage[small,compact]{titlesec}
 %
 % Chapter modifications. Rice prefers small chapter titles
 \setlength{\midchapskip}{5pt}
   \setlength{\afterchapskip}{2\baselineskip} %%%%%%%%% MOD: WAS 5\baselineskip
   \setlength{\beforechapskip}{18pt}%    \headindent %%%%%%% MOD: WAS 36pt
-% Section modifications: 
+% Section modifications:
 \setsecheadstyle{\Large \scshape\raggedright}
 \setsubsecheadstyle{\large\scshape\raggedright}
 \setsubsubsecheadstyle{\normalsize\scshape\raggedright}
@@ -129,35 +137,35 @@
 	\lettrine[lines=3,lhang=0.33,nindent=0em]{
 		\color{gray}
      		{\textsc{#1}}}{}}
-%%%%%%%%%%%%%%%%%%		
-\makeatletter 
-\newlength\dlf@normtxtw 
-\setlength\dlf@normtxtw{\textwidth} 
-\newsavebox{\feline@chapter} 
+%%%%%%%%%%%%%%%%%%
+\makeatletter
+\newlength\dlf@normtxtw
+\setlength\dlf@normtxtw{\textwidth}
+\newsavebox{\feline@chapter}
 \newcommand\feline@chapter@marker[1][4cm]{%
-	\sbox\feline@chapter{% 
+	\sbox\feline@chapter{%
 		\resizebox{!}{#1}{\fboxsep=1pt%
-			\colorbox{gray}{\color{white}\thechapter}% 
+			\colorbox{gray}{\color{white}\thechapter}%
 		}}%
-		\rotatebox{90}{% 
+		\rotatebox{90}{%
 			\resizebox{%
-				\heightof{\usebox{\feline@chapter}}+\depthof{\usebox{\feline@chapter}}}% 
+				\heightof{\usebox{\feline@chapter}}+\depthof{\usebox{\feline@chapter}}}%
 			{!}{\scshape\so\@chapapp}}\quad%
 		\raisebox{\depthof{\usebox{\feline@chapter}}}{\usebox{\feline@chapter}}%
-} 
+}
 \newcommand\feline@chm[1][4cm]{%
-	\sbox\feline@chapter{\feline@chapter@marker[#1]}% 
+	\sbox\feline@chapter{\feline@chapter@marker[#1]}%
 	\makebox[0pt][c]{% aka \rlap
 		\makebox[.5cm][r]{\usebox\feline@chapter}%
 	}}
 \makechapterstyle{daleifmodif}{
-	\renewcommand\chapnamefont{\normalfont\large\scshape\raggedleft\so} 
-	\renewcommand\chaptitlefont{\normalfont\Large\bfseries\scshape} 
-	\renewcommand\chapternamenum{} \renewcommand\printchaptername{} 
-	\renewcommand\printchapternum{\null\hfill\feline@chm[2cm]\par} 
-	\renewcommand\afterchapternum{\par\vskip\midchapskip} 
+	\renewcommand\chapnamefont{\normalfont\large\scshape\raggedleft\so}
+	\renewcommand\chaptitlefont{\normalfont\Large\bfseries\scshape}
+	\renewcommand\chapternamenum{} \renewcommand\printchaptername{}
+	\renewcommand\printchapternum{\null\hfill\feline@chm[2cm]\par}
+	\renewcommand\afterchapternum{\par\vskip\midchapskip}
 	\renewcommand\printchaptertitle[1]{\color{gray}\chaptitlefont\raggedleft ##1\par}
-} 
+}
 %%\makeatother
 %%\chapterstyle{daleifmodif}
 
@@ -227,7 +235,7 @@
 % Define title page layout according to Rice guidelines.  Auto-space everything.
 \renewcommand{\maketitle}{%
 	\thispagestyle{empty}{%
-	% Parbox for the top title section.  Wrap 
+	% Parbox for the top title section.  Wrap
 	\flushleft
 	\parbox[][3in][s]{6in}{%
 		% Use the header on this page
@@ -239,7 +247,7 @@
 			{\large \bfseries {\@title} \par}
 			\vspace*{\fill}
 			{by \par}
-			\vspace*{\fill}		
+			\vspace*{\fill}
 			{\large \bfseries {\@author} \par}
 			\vspace*{\fill}
 			{\large \textsc{A Thesis Submitted in Partial Fulfillment of the \\ Requirements for the Degree} \par}
@@ -248,35 +256,35 @@
 	}
 
 	\vspace{-.1in}
-	
+
 	% Flush signatures down the RHS
 	\flushright
 	\parbox[][5in][s]{3.5in}{%
 		\vspace*{\fill}
 		\textsc{Approved, Thesis Committee:}
 		\vspace*{\fill}
-				
+
 		% Committee Chair
 		\hrule
 		\vspace*{0.1in}
 		\@comchair, \emph{Chair} \par
 		\@comchairaffil \par
 		\vspace*{\fill}
-				
+
 		% Second Member
 		\hrule
 		\vspace*{0.1in}
 		\@comtwo \par
 		\@comtwoaffil \par
 		\vspace*{\fill}
-				
+
 		% Third member
 		\hrule
 		\vspace*{0.1in}
 		\@comthree \par
 		\@comthreeaffil \par
 		\vspace*{\fill}
-				
+
 		%If a fourth member is defined:
 		\ifx \@comfour \undefined
 		\else
@@ -286,7 +294,7 @@
 			\@comfour \par
 			\@comfouraffil \par
 			\vspace*{\fill}
-				
+
 			% Fifth member, if defined
 			\ifx \@comfive \undefined
 			\else
@@ -295,7 +303,7 @@
 			\@comfive \par
 			\@comfiveaffil \par
 			\vspace*{\fill}
-			
+
 			\fi
 		\fi
 	}
@@ -331,7 +339,7 @@
 
 % ACKNOWLEDGEMENTS
 
-% The acknowledgements environment puts a large, bold, centered 
+% The acknowledgements environment puts a large, bold, centered
 % "Acknowledgements" label at the top of the page. The acknowledgements
 % themselves appear in a quote environment, i.e. tabbed in at both sides, and
 % on its own page.
@@ -354,7 +362,7 @@
 %the top of the page. The abstract itself appears in a quote environment,
 %i.e. tabbed in at both sides, and on its own page.
 
-\newenvironment{abstract} {%
+\newenvironment{abstractchap}{%
   \newpage
   \thispagestyle{empty}
   \begin{center}
@@ -370,7 +378,7 @@
   \end{center}
   \addcontentsline{toc}{chapter}{Abstract}
   \doublespacing
-  \vspace{0.25in} 
+  \vspace{0.25in}
   \begin{quotation}}
 {\end{quotation}\thispagestyle{empty}}
 
@@ -380,8 +388,7 @@
 % for the contents and figures lists. It also resets
 % page-numbering for the remainder of the dissertation (arabic, starting at 1).
 
-\newenvironment{romanpages}
-{\setcounter{page}{1}
+\newenvironment{romanpages}{\setcounter{page}{1}
   \renewcommand{\thepage}{\roman{page}}}
 {\newpage\renewcommand{\thepage}{\arabic{page}}\setcounter{page}{1}}
 

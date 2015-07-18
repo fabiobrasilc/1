@@ -20,7 +20,7 @@
 % Define the thesis committee, and their positions
 % The comchair appears first, the others appear in order
 \comchair{Dr.\  Joseph Fourier}
-\comchairaffil{Professor, \'{E}cole Polytechnique, France} 
+\comchairaffil{Professor, \'{E}cole Polytechnique, France}
 \comtwo{Dr.\ Pierre-Simon Laplace}
 \comtwoaffil{Marquis, Kingdom of France}
 \comthree{Dr.\ Henri Lebesgue}
@@ -49,6 +49,8 @@
 % Include Abstract, Acknowledgement, and dedication if required.  It's in another file called "preface.tex"
 \DoubleSpacing
 %\doublespacing
+%
+% Don't use preface if you wish to have dropcap chapter titles
 %\include{preface}
 
 \chapter*{Abstract}
@@ -58,10 +60,10 @@
 % Set the number of sectioning levels that get numbered and appear in the contents
 \setcounter{secnumdepth}{3}
 \setcounter{tocdepth}{1}
- 
+
 % I prefer half spacing for lists like this.
 %\onehalfspacing
-\OnehalfSpacing 
+\OnehalfSpacing
 \tableofcontents
 \clearpage
 \listoffigures
@@ -71,13 +73,14 @@
 }
 % End roman numerals, begin numbering in Arabic starting with the text
 \end{romanpages}
- 
+
 \DoubleSpacing
 %\doublespacing
 
 %%%% INCLUDE TEX FILES IN ORDER  \/ \/ \/ \/
 {\chapterstyle{daleifmodif}
-\include{ex_chapter}
+\include{chapter_1}
+\include{chapter_2}
 %\include{intro}
 %\include{prior}
 
@@ -92,9 +95,9 @@
 %\begin{singlespace}
 \SingleSpacing
 \cleardoublepage
-\addcontentsline{toc}{chapter}{\bibsecname}
+%\addcontentsline{toc}{chapter}{\bibsecname} % Comment with natbib package
 \renewcommand{\bibname}{\bibsecname}
-\bibliographystyle{IEEEtran}
+%\bibliographystyle{IEEEtran}  %  Incompatible with natbib
 \bibliography{jabbrv,references}
 %\end{singlespace}
 }
