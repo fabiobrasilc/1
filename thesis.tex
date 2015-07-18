@@ -5,6 +5,8 @@
 \documentclass[oneside,12pt]{classes/Ricethesis_PDF}
 \usepackage{amsmath}
 \usepackage{amsthm}
+\usepackage[style=super]{glossaries}
+
 
 %% Document properties:
 
@@ -34,6 +36,9 @@
 %\comfive{Dr. Sim\'{e}on Poisson}
 %\comfiveaffil{Professor of Analysis, \'{E}cole Polytechnique}
 
+% Define Macros
+\input{Notation}
+
 %% Build the Thesis
 \makeindex
 \begin{document}
@@ -51,11 +56,15 @@
 %\doublespacing
 %
 % Don't use preface if you wish to have dropcap chapter titles
-%\include{preface}
+\include{preface}
 
-\chapter*{Abstract}
-\chapter*{Acknowledgements}
-\chapter*{} % Dedication
+%
+% \chapter*{Abstract}
+% \addcontentsline{toc}{chapter}{Acknowledgements}
+% \chapter*{Acknowledgements}
+% \addcontentsline{toc}{chapter}{Acknowledgements}
+% \chapter*{} % Dedication
+
 
 % Set the number of sectioning levels that get numbered and appear in the contents
 \setcounter{secnumdepth}{3}
@@ -65,6 +74,8 @@
 %\onehalfspacing
 \OnehalfSpacing
 \tableofcontents
+\clearpage
+\printglossaries
 \clearpage
 \listoffigures
 \clearpage
@@ -83,6 +94,7 @@
 \include{chapter_2}
 %\include{intro}
 %\include{prior}
+\chapter{Extensions and Future Work}
 
 %%%% END INCLUDED TEX FILES      /\ /\ /\ /\
 

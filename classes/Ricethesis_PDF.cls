@@ -46,7 +46,7 @@
 
 % Bibliography options
 \usepackage[authoryear,sort&compress,longnamesfirst]{natbib}
-\usepackage{chapterbib} % Compatible with natbib. Turn on sectionbib option.
+%\usepackage{chapterbib} % Compatible with natbib. Turn on sectionbib option.
 \bibliographystyle{apalike}
 
 % Margins and Borders
