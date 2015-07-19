@@ -36,9 +36,9 @@
 			linktocpage,
 			backref,
 			colorlinks = true,
-			linkcolor = black,
-			urlcolor  = black,
-			citecolor = black,
+			linkcolor = blue,
+			urlcolor  = blue,
+			citecolor = blue,
 			anchorcolor = green,
 			hyperindex = true,
 			hyperfigures]{hyperref}

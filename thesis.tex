@@ -5,7 +5,7 @@
 \documentclass[oneside,12pt]{classes/Ricethesis_PDF}
 \usepackage{amsmath}
 \usepackage{amsthm}
-\usepackage[toc,style=super]{glossaries}
+\usepackage[toc]{glossaries}
 
 
 %% Document properties:
@@ -79,12 +79,8 @@
 \clearpage
 \listoftables
 \clearpage
-
-%%%% Print Glossary %%%%%%%
-\chapter*{Notation}
-\addcontentsline{toc}{chapter}{Notation}
-\printglossaries
-\newpage
+\printglossary[title=Notation, toctitle=Notation]
+\clearpage
 
 }
 % End roman numerals, begin numbering in Arabic starting with the text
@@ -104,6 +100,11 @@
 %\include{prior}
 %\chapter{Extensions and Future Work}
 
+%%%% Print Glossary %%%%%%%
+% \chapter*{Notation}
+% \addcontentsline{toc}{chapter}{Notation}
+% \printglossaries
+% \newpage
 
 %%%% END INCLUDED TEX FILES      /\ /\ /\ /\
 

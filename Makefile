@@ -51,8 +51,8 @@ endif
 # Program Defintions
 
 # TEX    = pdflatex -shell-escape -interaction nonstopmode
-# TEX = $(LATEXMK) $(LATEXMKOPT) $(CONTINUOUS)
-TEX = $(LATEX) $(LATEXOPT) $(NONSTOP)
+ TEX = $(LATEXMK) $(LATEXMKOPT) $(CONTINUOUS)
+#TEX = $(LATEX) $(LATEXOPT) $(NONSTOP)
 BIBTEX = bibtex
 RM     = $(if $(filter $(OS_TYPE),Windows),del /f /q ,rm -f )
 GS     = gs -q -dNOPAUSE -dBATCH -sDEVICE = pdfwrite
@@ -102,6 +102,7 @@ endif
 	@echo "======================== TEX -> PDF ============================"
 	@$(TEX) $(*F)
 	@$(TEX) $(*F)
+	makeindex -s $(TARGET).ist -t $(TARGET).glg -o $(TARGET).gls $(TARGET).glo
 
 # To generate a .bbl file from a .tex file
 %.bbl : %.aux
@@ -128,5 +129,8 @@ publish:
 $(TARGET).tex : $(TEXSRC)
 $(TARGET).bbl : $(TEXSRC) $(BIBSRC)
 $(TARGET).pdf : $(TEXSRC) $(BBLSRC)
+#$(TARGET).gls : makeindex -s $(TARGET).ist -t $(TARGET).glg -o $(TARGET).gls $(TARGET).glo
+#$(TARGET).pdf : $(TEXSRC) $(BBLSRC) $(TARGET).gls
+
 
 .PHONY:default all clean reallyclean open
