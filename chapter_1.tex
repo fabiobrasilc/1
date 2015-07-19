@@ -15,6 +15,14 @@ You'll need to add your name, the title of your thesis, and your committee membe
 
 This will configure everything for the title page.  Now it's time to add content!
 
+\subsection{Adding the Glossary}
+Use the {\em glossaries} package in order to create a list of symbols or notations page.  As an example, let us define the space of continuous functions.
+
+\paragraph
+{\em
+We introduce The space \gls{Cab} of continuous functions defined on $[a,b]$ and its subspace \gls{C1ab} of differentiable functions with continuous derivatives defined on $[a,b]$.
+}
+
 \subsection{Adding Text}
 
 You'll need to add text for the abstract, acknowledgements, and body.  To break up the file, I strongly suggest using the \verb+\include{}+ command as demonstrated in this example.  You might make a file called \verb+preface.tex+ which includes both abstract and acknowledgements (and a dedication if required).  After this, the contents pages are automatically generated at one-and-a-half spacing.

@@ -5,7 +5,7 @@
 \documentclass[oneside,12pt]{classes/Ricethesis_PDF}
 \usepackage{amsmath}
 \usepackage{amsthm}
-\usepackage[style=super]{glossaries}
+\usepackage[toc,style=super]{glossaries}
 
 
 %% Document properties:
@@ -37,7 +37,7 @@
 %\comfiveaffil{Professor of Analysis, \'{E}cole Polytechnique}
 
 % Define Macros
-\input{Notation}
+\input{Notation.tex}
 
 %% Build the Thesis
 \makeindex
@@ -75,26 +75,35 @@
 \OnehalfSpacing
 \tableofcontents
 \clearpage
-\printglossaries
-\clearpage
 \listoffigures
 \clearpage
 \listoftables
 \clearpage
+
+%%%% Print Glossary %%%%%%%
+\chapter*{Notation}
+\addcontentsline{toc}{chapter}{Notation}
+\printglossaries
+\newpage
+
 }
 % End roman numerals, begin numbering in Arabic starting with the text
 \end{romanpages}
 
+
 \DoubleSpacing
 %\doublespacing
-
 %%%% INCLUDE TEX FILES IN ORDER  \/ \/ \/ \/
 {\chapterstyle{daleifmodif}
+
 \include{chapter_1}
+
 \include{chapter_2}
+
 %\include{intro}
 %\include{prior}
-\chapter{Extensions and Future Work}
+%\chapter{Extensions and Future Work}
+
 
 %%%% END INCLUDED TEX FILES      /\ /\ /\ /\
 
@@ -119,8 +128,8 @@
 			/Creator (TeX)
 			/Producer (pdfTeX)
 			/Author (The Author)
-			/CreationDate (D:20070228000000)  %format D:YYYYMMDDhhmmss
-			/ModDate (D:20110306225013)
+			/CreationDate (D:20150828000000)  %format D:YYYYMMDDhhmmss
+			/ModDate (D:20150901225013)
 			/Subject (Thesis)
 			/Keywords (Rice University, Thesis)}
 
